@@ -53,6 +53,16 @@ def add_entry():
     #flash('New entry was successfully posted')
     #return redirect(url_for('show_entries'))
 
+@app.route('/filelisting' ,methods=['GET'])
+def list():
+    rootdir = os.getcwd()
+    lst = [] 
+    for subdir , dirs, files in os.walk(rootdir + '/app/static/uploads'):
+        for file in files:
+            lst.append(file.lower())
+    return render_template('listing.html' , files=lst)
+
+
 @app.route('/login', methods=['POST','GET'])
 def login():
     error = None 

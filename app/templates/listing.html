@@ -3,7 +3,11 @@
 {%block main%}
 <ul>
 	{% for file in files %}
-		<li>{{file}}</li>
+		{%if file.split('.')[-1] == 'jpg'%}
+		<img src="static/uploads/{{file}}" alt="{{file}}" height="42" width="42"> 
+		{%else%}
+			<li>{{file}}</li>
+		{%endif%}
 	{%endfor%}
 </ul>
 {%endblock%}
